@@ -1,6 +1,6 @@
 #!/bin/bash
-
 set -euo pipefail
+
 mkdir -p FullSSR && cd FullSSR
 
 # 1. Download FullSSR
@@ -13,8 +13,8 @@ wget -nc -O primer3-2.3.7.tar.gz https://sourceforge.net/projects/primer3/files/
   && cd primer3-2.3.7/src \
   && make \
   && cd -
-mv config.txt config.txt.bak \
-  && cat config.txt.bak \
+mv config.txt config.txt.bak
+cat config.txt.bak \
   | perl -pe "s|/home/../primer3-2.3.6|$(pwd)/primer3-2.3.7|g" \
   > config.txt
 
@@ -25,7 +25,7 @@ wget -nc https://cpan.metacpan.org/authors/id/C/CJ/CJFIELDS/BioPerl-1.007001.tar
 # 4. Copy missing library
 cp Primer3.pm BioPerl-1.007001/Bio/Tools/Run
 
-# 5. Modify script to use local BioPerl
+# 5. Force FullSSR script to use local BioPerl
 cat FullSSR\(ver-1.1\).pl \
   | perl -pe "s|use strict;|use strict;\nuse lib \"$(pwd)/BioPerl-1.007001\";|" \
   | perl -pe "s|use strict;|use strict;\nuse lib \"$(pwd)/\";|" \

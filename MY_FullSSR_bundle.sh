@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -euo pipefail
 
 # 0. Download FullSSR bundle
@@ -11,8 +10,8 @@ curl -o FullSSR.zip "http://www.psb.ugent.be/~shkao/shared/FullSSR.zip" \
 tar -zxvf FullSSR.tar.gz
 
 # 2. Update FullSSR config
-mv config.txt config.txt.bak \
-  && cat config.txt.bak \
+mv config.txt config.txt.bak
+cat config.txt.bak \
   | perl -pe "s|/home/../primer3-2.3.6|$(pwd)/primer3-2.3.7|g" \
   > config.txt
 
