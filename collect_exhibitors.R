@@ -8,47 +8,59 @@ main.url <- "https://www.mobileworldcongress.com/exhibitors"
 main.html <-
   read_html(curl(main.url, handle = curl::new_handle("useragent" = "Mozilla/5.0")))
 
+# 從主頁面中取得總頁數
 page.tatal <- main.html %>%
   html_nodes(".dots+ .page-numbers") %>%
   html_text()
 
 datalist = list()
 
+# 從第一頁到最後一頁，依序進行迴圈中的動作
 for (i in 1:page.tatal) {
-#for (i in 1:3) {
+  # 建立第i頁的網址
   page.url <- paste0(main.url, "/page/", i)
 
+  # 抓取第i頁中所有公司的連結
   company.urls <-
     read_html(curl(page.url, handle = curl::new_handle("useragent" = "Mozilla/5.0"))) %>%
     html_nodes(".entity") %>%
     html_attr("href")
   
+  # 對該頁中抓到的所有連結，依序進行迴圈中的動作
   for (j in 1:length(company.urls)) {
+    # 第j筆公司的網址
     company.url <- company.urls[j]
+
+    # 抓取第i頁第j筆公司的網頁資料
     company.html <-
       read_html(curl(
         company.url,
         handle = curl::new_handle("useragent" = "Mozilla/5.0")
       ))
     
+    # 從網頁中萃取公司的名稱
     company.name <- company.html %>%
       html_nodes("h1") %>%
       html_text() %>%
       last
 
+    # 在迴圈運行的同時告知使用者目前處理中的進度
     cat(paste0("Fetching company: ", company.name, " from page ", i, "...\n"))
     
+    # 從網頁中萃取公司的位置
     company.location <- company.html %>%
       html_nodes(".list-location") %>%
       html_text() %>%
       paste(collapse = ' ')
     
+    # 從網頁中萃取公司的國家
     company.country <- company.html %>%
       html_nodes(".list-country") %>%
       html_text() %>%
       paste(collapse = ' ') %>%
       trimws()
     
+    # 從網頁中萃取公司的簡述
     company.description <- company.html %>%
       html_nodes(".flex-100 p") %>%
       html_text() %>%
@@ -56,12 +68,14 @@ for (i in 1:page.tatal) {
     company.description <-
       gsub("\n", " ", company.description)
     
+    # 從網頁中萃取公司的聯絡方式
     company.contact <- company.html %>%
       html_nodes(".nopadding-bottom+ .flex-50 p") %>%
       html_text() %>%
       paste(collapse = ' ') %>%
       trimws()
     
+    # 從網頁中萃取公司的網址或其他聯絡方式
     company.get_in_touch <- company.html %>%
       html_nodes(".websitebox") %>%
       html_attr("href")
@@ -69,6 +83,7 @@ for (i in 1:page.tatal) {
       company.get_in_touch = NA
     }
     
+    # 從網頁中萃取關於公司的tag
     company.tags <- company.html %>%
       html_nodes(".entity-tags") %>%
       html_text() %>%
@@ -79,6 +94,7 @@ for (i in 1:page.tatal) {
     company.tags <- gsub("  ", "", company.tags)
     company.tags <- gsub("\r\n\r\n", "; ", company.tags)
     
+    # 將這筆公司的所有資訊存成一個dataframe
     index = paste0(i, "_", j)
     dat <-
       data.frame(
@@ -91,12 +107,16 @@ for (i in 1:page.tatal) {
         get_in_touch = company.get_in_touch,
         tags = company.tags
       )
-    
+
+    # 以index(i_j)為索引，將剛剛建立的dataframe存進datalist裡
     datalist[[index]] <- dat
   }
   Sys.sleep(3)
   remove(company.urls)
 }
 
+# 整合所有list，儲存為新的dataframe
 company.all <- do.call(rbind, datalist)
+
+# 將所有資料(剛剛建立的dataframe)匯出為Excel檔案
 WriteXLS(company.all, "~/Desktop/companies.xls", row.names = FALSE)
