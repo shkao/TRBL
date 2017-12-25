@@ -15,7 +15,7 @@ page.tatal <- main.html %>%
 
 datalist = list()
 
-# 從第一頁到最後一頁，依序進行迴圈中的動作
+# 對每一頁依次進行
 for (i in 1:page.tatal) {
   # 建立第i頁的網址
   page.url <- paste0(main.url, "/page/", i)
@@ -26,7 +26,7 @@ for (i in 1:page.tatal) {
     html_nodes(".entity") %>%
     html_attr("href")
   
-  # 對該頁中抓到的所有連結，依序進行迴圈中的動作
+  # 對該頁中抓到的所有連結，依序進行
   for (j in 1:length(company.urls)) {
     # 第j筆公司的網址
     company.url <- company.urls[j]
@@ -38,29 +38,29 @@ for (i in 1:page.tatal) {
         handle = curl::new_handle("useragent" = "Mozilla/5.0")
       ))
     
-    # 從網頁中萃取公司的名稱
+    # 從網頁中提取公司的名稱
     company.name <- company.html %>%
       html_nodes("h1") %>%
       html_text() %>%
       last
 
-    # 在迴圈運行的同時告知使用者目前處理中的進度
+    # 提示使用者目前處理中的公司
     cat(paste0("Fetching company: ", company.name, " from page ", i, "...\n"))
     
-    # 從網頁中萃取公司的位置
+    # 從網頁中提取公司的位置
     company.location <- company.html %>%
       html_nodes(".list-location") %>%
       html_text() %>%
       paste(collapse = ' ')
     
-    # 從網頁中萃取公司的國家
+    # 從網頁中提取公司的國家
     company.country <- company.html %>%
       html_nodes(".list-country") %>%
       html_text() %>%
       paste(collapse = ' ') %>%
       trimws()
     
-    # 從網頁中萃取公司的簡述
+    # 從網頁中提取公司的簡述
     company.description <- company.html %>%
       html_nodes(".flex-100 p") %>%
       html_text() %>%
@@ -68,14 +68,14 @@ for (i in 1:page.tatal) {
     company.description <-
       gsub("\n", " ", company.description)
     
-    # 從網頁中萃取公司的聯絡方式
+    # 從網頁中提取公司的聯絡方式
     company.contact <- company.html %>%
       html_nodes(".nopadding-bottom+ .flex-50 p") %>%
       html_text() %>%
       paste(collapse = ' ') %>%
       trimws()
     
-    # 從網頁中萃取公司的網址或其他聯絡方式
+    # 從網頁中提取公司的網址或其他聯絡方式
     company.get_in_touch <- company.html %>%
       html_nodes(".websitebox") %>%
       html_attr("href")
@@ -83,7 +83,7 @@ for (i in 1:page.tatal) {
       company.get_in_touch = NA
     }
     
-    # 從網頁中萃取關於公司的tag
+    # 從網頁中提取關於公司的tag
     company.tags <- company.html %>%
       html_nodes(".entity-tags") %>%
       html_text() %>%
