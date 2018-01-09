@@ -2,7 +2,7 @@
 
 library("readxl")
 
-args <- commandArgs(trailingOnly=TRUE)
+args <- commandArgs(trailingOnly = TRUE)
 
 in_xls <- args[1]
 out_bed <- paste0(tools::file_path_sans_ext(in_xls), ".bed")
