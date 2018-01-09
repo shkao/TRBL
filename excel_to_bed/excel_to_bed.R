@@ -1,5 +1,7 @@
 #!/usr/bin/env Rscript
 
+if (!requireNamespace("readxl"))
+  install.packages("readxl")
 library("readxl")
 
 args <- commandArgs(trailingOnly = TRUE)
