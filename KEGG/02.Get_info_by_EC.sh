@@ -3,7 +3,7 @@ set -euo pipefail
 
 
 # Get all information of KEGG pathways
-perl Parse_pathways.pl > KEGG_info.txt
+perl Gen_KEGG_info.pl > KEGG_info.txt
 
 # Extract uniq EC numbers
 grep '^EC' test.txt | cut -f1 | sed 's/EC://g' | sort -g -u > test_uniq_ec.txt
