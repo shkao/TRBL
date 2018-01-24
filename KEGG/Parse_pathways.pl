@@ -2,30 +2,25 @@
 
 use strict;
 use warnings;
+use FindBin qw/ $Bin /;
+use lib "$Bin/lib";
+use KEGG_sk;
 
-my $kegg_html = 'pathway.html';
-open( my $fh, '<:encoding(UTF-8)', $kegg_html )
-  or die "Could not open file '$kegg_html' $!";
+my @mapIDs = KEGG_sk::get_all_mapIDs;
 
-my @kegg_data;
-while ( my $row = <$fh> ) {
-    chomp $row;
-    push( @kegg_data, $row );
-}
+my $headers = join("\t", "Map ID", " Map category", "Map description", "KO", "Product", "Product description", "EC numbers");
+print "$headers\n";
 
-my $map_category;
-for ( my $i = 0 ; $i <= $#kegg_data ; $i++ ) {
-    my ( $map_id, $map_desc );
+foreach my $mapID (@mapIDs) {
+    my ( $map_category, $map_desc ) = ("", "");
+    ( $map_category, $map_desc ) = KEGG_sk::get_mapID_info($mapID);
+    my @koIDs = KEGG_sk::get_koIDs($mapID);
 
-    if ( $kegg_data[$i] =~ /^<b>/ && $kegg_data[$i] =~ /<\/b>$/ ) {
-        $map_category = $1 if ( $kegg_data[$i] =~ /\<b\>(.+)\<\/b\>/ );
-    }
-    elsif ( $kegg_data[$i] =~ /kegg-bin\/show_pathway/ ) {
-        $map_id = $1 if ( $kegg_data[$i] =~ /\<dt\>(\d+)\<\/dt\>/ );
-        $map_desc = $1
-          if ( $kegg_data[$i] =~ /show_description\=show\"\>(.+)\<\/a\>/
-            || $kegg_data[$i] =~ /map\d+\"\>(.+)\<\/a\>/ );
+    foreach my $koID (@koIDs) {
+        my ( $gene_products, $info, $ec ) = ( "", "", "");
+        ( $gene_products, $info, $ec ) = KEGG_sk::get_koID_info($koID);
 
-        print "$map_category\t$map_id\t$map_desc\n";
+        my $output = join("\t", $mapID, $map_category, $map_desc, $koID, $gene_products, $info, $ec);
+        print "$output\n";
     }
 }
