@@ -1,6 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
+
 mkdir -p data
 
 wget -P data -nc http://www.genome.jp/kegg/pathway.html
