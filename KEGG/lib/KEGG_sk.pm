@@ -15,9 +15,10 @@ my %mapID_2_koIDs;
 my $mapID = "";
 for ( my $i = 0 ; $i < $#ko_raw ; $i++ ) {
     my $line = $ko_raw[$i];
-    if ( $line =~ /^C/) {
-        $mapID = $1 if ($line =~ /^C\W+(\d+) /);
-    } elsif ( $line =~ /^D/ ) {
+    if ( $line =~ /^C/ ) {
+        $mapID = $1 if ( $line =~ /^C\W+(\d+) / );
+    }
+    elsif ( $line =~ /^D/ ) {
         my ( $koID, $gene_products, $info, $ec ) = ( "", "", "", "" );
         $koID          = $1 if ( $line =~ /^D\W+(K\d+)\W+/ );
         $koID          = sanitize($koID);
@@ -28,7 +29,7 @@ for ( my $i = 0 ; $i < $#ko_raw ; $i++ ) {
         $ec   = $1 if ( $line =~ /\[(EC\:.+)\]$/ );
         $ec   = sanitize($ec);
 
-        push @{$mapID_2_koIDs{$mapID}}, $koID;
+        push @{ $mapID_2_koIDs{$mapID} }, $koID;
         $koID_2_info{$koID} = {
             gene_products => $gene_products,
             info          => $info,
@@ -68,7 +69,7 @@ for ( my $i = 0 ; $i <= $#kegg_raw ; $i++ ) {
             map_desc     => $map_desc
         };
 
-        push ( @mapIDs, $mapID );
+        push( @mapIDs, $mapID );
     }
 }
 
@@ -122,8 +123,8 @@ sub get_all_mapIDs {
 sub get_koIDs {
     my ($mapID) = @_;
     my @koIDs;
-    if (defined($mapID_2_koIDs{$mapID})) {
-        @koIDs = @{$mapID_2_koIDs{$mapID}};
+    if ( defined( $mapID_2_koIDs{$mapID} ) ) {
+        @koIDs = @{ $mapID_2_koIDs{$mapID} };
     }
 
     return @koIDs;
