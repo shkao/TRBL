@@ -26,10 +26,10 @@
 00190	1.2 Energy metabolism	Oxidative phosphorylation	K00356	E1.6.99.3	NADH dehydrogenase	EC:1.6.99.3
 00190	1.2 Energy metabolism	Oxidative phosphorylation	K03885	ndh	NADH dehydrogenase	EC:1.6.99.3
 00190	1.2 Energy metabolism	Oxidative phosphorylation	K02277	coxD, ctaF	cytochrome c oxidase subunit IV	EC:1.9.3.1
-00190	1.2 Energy metabolism	Oxidative phosphorylation	K02276	coxC	cytochrome c oxidase subunit III	EC:1.9.3.1
-00190	1.2 Energy metabolism	Oxidative phosphorylation	K02274	coxA	cytochrome c oxidase subunit I	EC:1.9.3.1
+00190	1.2 Energy metabolism	Oxidative phosphorylation	K02276	coxC, ctaE	cytochrome c oxidase subunit III	EC:1.9.3.1
+00190	1.2 Energy metabolism	Oxidative phosphorylation	K02274	coxA, ctaD	cytochrome c oxidase subunit I	EC:1.9.3.1
 00190	1.2 Energy metabolism	Oxidative phosphorylation	K15408	coxAC	cytochrome c oxidase subunit I+III	EC:1.9.3.1
-00190	1.2 Energy metabolism	Oxidative phosphorylation	K02275	coxB	cytochrome c oxidase subunit II	EC:1.9.3.1
+00190	1.2 Energy metabolism	Oxidative phosphorylation	K02275	coxB, ctaC	cytochrome c oxidase subunit II	EC:1.9.3.1
 00190	1.2 Energy metabolism	Oxidative phosphorylation	K02256	COX1	cytochrome c oxidase subunit 1	EC:1.9.3.1
 00190	1.2 Energy metabolism	Oxidative phosphorylation	K00404	ccoN	cytochrome c oxidase cbb3-type subunit I	EC:1.9.3.1
 00190	1.2 Energy metabolism	Oxidative phosphorylation	K15862	ccoNO	cytochrome c oxidase cbb3-type subunit I/II	EC:1.9.3.1
@@ -96,6 +96,7 @@
 00860	1.8 Metabolism of cofactors and vitamins	Porphyrin and chlorophyll metabolism	K19054	FXN	frataxin	EC:1.16.3.1
 00860	1.8 Metabolism of cofactors and vitamins	Porphyrin and chlorophyll metabolism	K03594	bfr	bacterioferritin	EC:1.16.3.1
 00860	1.8 Metabolism of cofactors and vitamins	Porphyrin and chlorophyll metabolism	K22336	bfrB	bacterioferritin B	EC:1.16.3.1
+00860	1.8 Metabolism of cofactors and vitamins	Porphyrin and chlorophyll metabolism	K22552	mmcO	multicopper oxidase	EC:1.16.3.1
 00900	1.9 Metabolism of terpenoids and polyketides	Terpenoid backbone biosynthesis	K01662	dxs	1-deoxy-D-xylulose-5-phosphate synthase	EC:2.2.1.7
 00900	1.9 Metabolism of terpenoids and polyketides	Terpenoid backbone biosynthesis	K00587	ICMT, STE14	protein-S-isoprenylcysteine O-methyltransferase	EC:2.1.1.100
 00906	1.9 Metabolism of terpenoids and polyketides	Carotenoid biosynthesis	K10027	crtI	phytoene desaturase	EC:1.3.99.26 1.3.99.28 1.3.99.29 1.3.99.31
@@ -117,6 +118,8 @@
 00643	1.11 Xenobiotics biodegradation and metabolism	Styrene degradation	K01040	gctB	glutaconate CoA-transferase, subunit B	EC:2.8.3.12
 00643	1.11 Xenobiotics biodegradation and metabolism	Styrene degradation	K01026	pct	propionate CoA-transferase	EC:2.8.3.1
 00365	1.11 Xenobiotics biodegradation and metabolism	Furfural degradation	K16876	hmfD	2-furoate---CoA ligase	EC:6.2.1.31
+00983	1.11 Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes	K10807	RRM1	ribonucleoside-diphosphate reductase subunit M1	EC:1.17.4.1
+00983	1.11 Xenobiotics biodegradation and metabolism	Drug metabolism - other enzymes	K10808	RRM2	ribonucleoside-diphosphate reductase subunit M2	EC:1.17.4.1
 03040	2.1 Transcription	Spliceosome	K09567	PPIH, CYPH	peptidyl-prolyl isomerase H (cyclophilin H)	EC:5.2.1.8
 03040	2.1 Transcription	Spliceosome	K12733	PPIL1	peptidyl-prolyl cis-trans isomerase-like 1	EC:5.2.1.8
 03040	2.1 Transcription	Spliceosome	K09564	PPIE	peptidyl-prolyl isomerase E (cyclophilin E)	EC:5.2.1.8
@@ -229,6 +232,7 @@
 04810	4.5 Cell motility	Regulation of actin cytoskeleton	K05766	SSH	protein phosphatase slingshot	EC:3.1.3.16 3.1.3.48
 04622	5.1 Immune system	RIG-I-like receptor signaling pathway	K09578	PIN1	peptidyl-prolyl cis-trans isomerase NIMA-interacting 1	EC:5.2.1.8
 04623	5.1 Immune system	Cytosolic DNA-sensing pathway	K12970	M45	ribonucleoside-diphosphate reductase	EC:1.17.4.1
+04625	5.1 Immune system	C-type lectin receptor signaling pathway	K07293	PTPN11	tyrosine-protein phosphatase non-receptor type 11	EC:3.1.3.48
 04650	5.1 Immune system	Natural killer cell mediated cytotoxicity	K05697	PTPN6, SHP-1	tyrosine-protein phosphatase non-receptor type 6	EC:3.1.3.48
 04650	5.1 Immune system	Natural killer cell mediated cytotoxicity	K07293	PTPN11	tyrosine-protein phosphatase non-receptor type 11	EC:3.1.3.48
 04660	5.1 Immune system	T cell receptor signaling pathway	K06478	PTPRC, CD45	receptor-type tyrosine-protein phosphatase C	EC:3.1.3.48
@@ -295,6 +299,15 @@
 04213	5.9 Aging	Longevity regulating pathway - multiple species	K04564	SOD2	superoxide dismutase, Fe-Mn family	EC:1.15.1.1
 04213	5.9 Aging	Longevity regulating pathway - multiple species	K04565	SOD1	superoxide dismutase, Cu-Zn family	EC:1.15.1.1
 04713	5.10 Environmental adaptation	Circadian entrainment	K04515	CAMK2	calcium/calmodulin-dependent protein kinase (CaM kinase) II	EC:2.7.11.17
+04714	5.10 Environmental adaptation	Thermogenesis	K01897	ACSL, fadD	long-chain acyl-CoA synthetase	EC:6.2.1.3
+04714	5.10 Environmental adaptation	Thermogenesis	K03934	NDUFS1	NADH dehydrogenase (ubiquinone) Fe-S protein 1	EC:1.6.5.3 1.6.99.3
+04714	5.10 Environmental adaptation	Thermogenesis	K03935	NDUFS2	NADH dehydrogenase (ubiquinone) Fe-S protein 2	EC:1.6.5.3 1.6.99.3
+04714	5.10 Environmental adaptation	Thermogenesis	K03936	NDUFS3	NADH dehydrogenase (ubiquinone) Fe-S protein 3	EC:1.6.5.3 1.6.99.3
+04714	5.10 Environmental adaptation	Thermogenesis	K03940	NDUFS7	NADH dehydrogenase (ubiquinone) Fe-S protein 7	EC:1.6.5.3 1.6.99.3
+04714	5.10 Environmental adaptation	Thermogenesis	K03941	NDUFS8	NADH dehydrogenase (ubiquinone) Fe-S protein 8	EC:1.6.5.3 1.6.99.3
+04714	5.10 Environmental adaptation	Thermogenesis	K03942	NDUFV1	NADH dehydrogenase (ubiquinone) flavoprotein 1	EC:1.6.5.3 1.6.99.3
+04714	5.10 Environmental adaptation	Thermogenesis	K03943	NDUFV2	NADH dehydrogenase (ubiquinone) flavoprotein 2	EC:1.6.5.3 1.6.99.3
+04714	5.10 Environmental adaptation	Thermogenesis	K02256	COX1	cytochrome c oxidase subunit 1	EC:1.9.3.1
 05200	6.1 Cancers: Overview	Pathways in cancer	K01110	PTEN	phosphatidylinositol-3,4,5-trisphosphate 3-phosphatase and dual-specificity protein phosphatase PTEN	EC:3.1.3.16 3.1.3.48 3.1.3.67
 05200	6.1 Cancers: Overview	Pathways in cancer	K04515	CAMK2	calcium/calmodulin-dependent protein kinase (CaM kinase) II	EC:2.7.11.17
 05230	6.1 Cancers: Overview	Central carbon metabolism in cancer	K01110	PTEN	phosphatidylinositol-3,4,5-trisphosphate 3-phosphatase and dual-specificity protein phosphatase PTEN	EC:3.1.3.16 3.1.3.48 3.1.3.67
@@ -370,6 +383,7 @@
 04931	6.7 Endocrine and metabolic diseases	Insulin resistance	K05695	PTPRF, LAR	receptor-type tyrosine-protein phosphatase F	EC:3.1.3.48
 04931	6.7 Endocrine and metabolic diseases	Insulin resistance	K08746	SLC27A2, FACVL1, FATP2	solute carrier family 27 (fatty acid transporter), member 2	EC:6.2.1.- 6.2.1.3
 04931	6.7 Endocrine and metabolic diseases	Insulin resistance	K01110	PTEN	phosphatidylinositol-3,4,5-trisphosphate 3-phosphatase and dual-specificity protein phosphatase PTEN	EC:3.1.3.16 3.1.3.48 3.1.3.67
+04934	6.7 Endocrine and metabolic diseases	Cushing’s syndrome	K04515	CAMK2	calcium/calmodulin-dependent protein kinase (CaM kinase) II	EC:2.7.11.17
 05120	6.8 Infectious diseases: Bacterial	Epithelial cell signaling in Helicobacter pylori infection	K07293	PTPN11	tyrosine-protein phosphatase non-receptor type 11	EC:3.1.3.48
 05120	6.8 Infectious diseases: Bacterial	Epithelial cell signaling in Helicobacter pylori infection	K08114	PTPRZ	receptor-type tyrosine-protein phosphatase zeta	EC:3.1.3.48
 05152	6.8 Infectious diseases: Bacterial	Tuberculosis	K04515	CAMK2	calcium/calmodulin-dependent protein kinase (CaM kinase) II	EC:2.7.11.17
